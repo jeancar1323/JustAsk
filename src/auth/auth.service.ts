@@ -17,4 +17,10 @@ export class AuthService {
     });
     return user;
   }
+  async auth2(auth: Auth): Promise<any> {
+    const user = await this.userRepo.findOneOrFail({
+      where: { email: auth.email },
+    });
+    return user;
+  }
 }
