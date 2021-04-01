@@ -1,13 +1,13 @@
+import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
 @Module({
   imports: [
     UserModule,
+    AuthModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -15,13 +15,13 @@ import { AppService } from './app.service';
       username: 'root',
       password: '',
       database: 'justask',
-      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+      entities: [__dirname + '**/*.entity{.ts,.js}'],
       synchronize: true,
       autoLoadEntities: true,
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {
   constructor(private connection: Connection) {}
